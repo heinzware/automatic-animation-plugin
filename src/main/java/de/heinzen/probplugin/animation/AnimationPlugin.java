@@ -2,6 +2,8 @@ package de.heinzen.probplugin.animation;
 
 import de.prob2.ui.plugin.MenuEnum;
 import de.prob2.ui.plugin.ProBPlugin;
+import de.prob2.ui.plugin.ProBPluginManager;
+import de.prob2.ui.plugin.ProBPluginUIConnection;
 import de.prob2.ui.prob2fx.CurrentProject;
 import de.prob2.ui.project.Project;
 import javafx.beans.value.ChangeListener;
@@ -21,8 +23,8 @@ public class AnimationPlugin extends ProBPlugin {
     private CurrentProject currentProject;
     private ChangeListener<Project> projectListener;
 
-    public AnimationPlugin(PluginWrapper pluginWrapper) {
-        super(pluginWrapper);
+    public AnimationPlugin(PluginWrapper pluginWrapper, ProBPluginManager proBPluginManager, ProBPluginUIConnection proBPluginUIConnection) {
+        super(pluginWrapper, proBPluginManager, proBPluginUIConnection);
     }
 
     @Override
@@ -45,13 +47,13 @@ public class AnimationPlugin extends ProBPlugin {
 
     @Override
     public void stopPlugin() {
-        getProBConnection().removeMenuItem(MenuEnum.FILE_MENU, menuItem);
+        getProBPluginUIConnection().removeMenuItem(MenuEnum.FILE_MENU, menuItem);
         currentProject.removeListener(projectListener);
     }
 
     private void createMenu() {
         menuItem = new CheckMenuItem("Automatic Animation");
-        getProBConnection().addMenuItem(MenuEnum.FILE_MENU, 3, menuItem);
+        getProBPluginUIConnection().addMenuItem(MenuEnum.FILE_MENU, 3, menuItem);
     }
 
     private boolean enabled() {
