@@ -6,7 +6,7 @@ import de.prob2.ui.project.Project;
 import de.prob2.ui.project.preferences.Preference;
 import javafx.beans.value.ChangeListener;
 import javafx.scene.control.CheckMenuItem;
-import ro.fortsoft.pf4j.PluginWrapper;
+import org.pf4j.PluginWrapper;
 
 /**
  * @author Christoph Heinzen
